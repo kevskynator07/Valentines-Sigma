@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Mishil</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        button {
+            margin-bottom: 50px;
+            padding: 15px 25%;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            font-size: 1.2em;
+            border-radius: 4%;
+            cursor: pointer;
+            box-shadow: 0 4px #c2185b;
+        }
+        button:hover {
+            background-color: #ff85c1;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🎈 Happy Birthday! 🎂</h1>
+<img src="https://cdn.shopify.com/s/files/1/0683/0194/7201/files/o0660045015072474281_480x480.gif?v=1717130679" alt="chiikawa" width="35%" height="20%">
+<a href="page2.html" target="_self">
+<button>Click me for a surprise!</button>
+</a>
+<script>
+    function showMessage() {
+        document.getElementById("message").style.display = "block";
+    }
+    for (let i = 0; i < 20; i++) {
+        let balloon = document.createElement("div");
+      balloon.className = "balloon";
+      balloon.style.left = Math.random() * 100 + "vw";
+      balloon.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 70%)`;
+      balloon.style.animationDuration = (Math.random() * 5 + 5) + "s";
+      balloon.style.animationDelay = Math.random() * 5 + "s";
+      document.body.appendChild(balloon);
+    }
+</script>
+</body>
+</html>
