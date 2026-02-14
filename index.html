@@ -3,44 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Mishil</title>
+    <title>Happy valentines!!!</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        button {
-            margin-bottom: 50px;
-            padding: 15px 25%;
-            background-color: #ff69b4;
-            color: white;
-            border: none;
-            font-size: 1.2em;
-            border-radius: 4%;
-            cursor: pointer;
-            box-shadow: 0 4px #c2185b;
+        body {
+        overflow: hidden; /* Prevents scrollbars from the floating hearts */
+        background-color: #fff0f5; /* Light blush background */
+        text-align: center;
+        font-family: Arial, sans-serif;
+    }
+
+    button {
+        margin-bottom: 50px;
+        padding: 15px 25%;
+        background-color: #ff69b4;
+        color: white;
+        border: none;
+        font-size: 1.2em;
+        border-radius: 4px;
+        cursor: pointer;
+        box-shadow: 0 4px #c2185b;
+        position: relative;
+        z-index: 10; /* Keeps button above hearts */
+    }
+
+    button:hover {
+        background-color: #ff85c1;
+    }
+
+    /* The Heart Shape */
+    .heart {
+        position: absolute;
+        bottom: -100px;
+        width: 30px;
+        height: 30px;
+        background-color: red;
+        transform: rotate(-45deg);
+        animation: floatUp linear infinite;
+        opacity: 0.8;
+    }
+
+    .heart::before,
+    .heart::after {
+        content: "";
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        background-color: red;
+        border-radius: 50%;
+    }
+
+    .heart::before {
+        top: -15px;
+        left: 0;
+    }
+
+    .heart::after {
+        left: 15px;
+        top: 0;
+    }
+
+    @keyframes floatUp {
+        0% {
+            transform: translateY(0) rotate(-45deg) scale(1);
+            opacity: 0.8;
         }
-        button:hover {
-            background-color: #ff85c1;
+        100% {
+            transform: translateY(-110vh) rotate(-45deg) scale(1.2);
+            opacity: 0;
         }
-    </style>
+    }
+</style>
+<script>
+    function showMessage() {
+        document.getElementById("message").style.display = "block";
+    }
+
+    const colors = ['#ff4d6d', '#ff758f', '#ff85a1', '#fbb1bd', '#ffb3c1'];
+
+    for (let i = 0; i < 25; i++) {
+        let heart = document.createElement("div");
+        heart.className = "heart";
+        
+        // Randomize position and timing
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+        heart.style.animationDelay = Math.random() * 5 + "s";
+        
+        // Pick a random pink/red from our list and set it
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        heart.style.setProperty('--color', randomColor);
+        
+        document.body.appendChild(heart);
+    }
+</script>
 </head>
 <body>
 
-<h1>🎈 Happy Birthday! 🎂</h1>
+<h1>❤️ Happy Valentines! ❤️</h1>
 <img src="https://cdn.shopify.com/s/files/1/0683/0194/7201/files/o0660045015072474281_480x480.gif?v=1717130679" alt="chiikawa" width="35%" height="20%">
 <a href="page2.html" target="_self">
 <button>Click me for a surprise!</button>
 </a>
 <script>
-    function showMessage() {
-        document.getElementById("message").style.display = "block";
-    }
-    for (let i = 0; i < 20; i++) {
-        let balloon = document.createElement("div");
-      balloon.className = "balloon";
-      balloon.style.left = Math.random() * 100 + "vw";
-      balloon.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 70%)`;
-      balloon.style.animationDuration = (Math.random() * 5 + 5) + "s";
-      balloon.style.animationDelay = Math.random() * 5 + "s";
-      document.body.appendChild(balloon);
+    const heartCount = 30; // Number of hearts
+    for (let i = 0; i < heartCount; i++) {
+        let heart = document.createElement("div");
+        heart.className = "heart";
+        
+        // Randomize Position
+        heart.style.left = Math.random() * 100 + "vw";
+        
+        // Randomize Colors (Reds and Pinks)
+        const colors = ['#ff69b4', '#ff1493', '#ff0000', '#db7093', '#ff85c1'];
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        heart.style.backgroundColor = randomColor;
+        
+        // Apply color to pseudo-elements too
+        heart.style.setProperty('--heart-color', randomColor); 
+        // Note: For pseudo-elements to change color, we use a small trick:
+        heart.innerHTML = `<style>.heart:nth-child(${i+3}){background-color:${randomColor};}.heart:nth-child(${i+3})::before, .heart:nth-child(${i+3})::after{background-color:${randomColor};}</style>`;
+
+        // Randomize Animation Timing
+        heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+        heart.style.animationDelay = (Math.random() * 5) + "s";
+        
+        // Randomize Size
+        let size = (Math.random() * 0.5 + 0.5); // scale between 0.5 and 1
+        heart.style.transform = `rotate(-45deg) scale(${size})`;
+        
+        document.body.appendChild(heart);
     }
 </script>
 </body>
