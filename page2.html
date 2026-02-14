@@ -3,177 +3,235 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Mishil</title>
+    <title>Happy Birthday Maychel</title>
     <style>
         body {
-    margin: 0;
-    padding: 15%;
-    background: linear-gradient(to top, #ffe5ec, #ffc8dd);
-    font-family: "Times New Roman", Times, serif;
-    text-align: center;
-    color: #5d1049;
-    overflow: hidden;
-    }
-h1{
-    font-size: 3em;
-      margin-top: 2em;
-      animation: bounce 2s infinite;
-}
-#message {
-    font-size: 1.8em;
-      margin-top: 30px;
-      display: none;
-}
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-}
-.balloon {
-    position: absolute;
-      width: 40px;
-      height: 55px;
-      background-color: #f48fb1;
-      border-radius: 50% 50% 45% 45%;
-      animation: float 6s infinite ease-in;
-      opacity: 0.8;
-}
-@keyframes float {
-    0% {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 0;
-      }
-      20% { opacity: 1; }
-      100% {
-        transform: translateY(-110vh) rotate(360deg);
-        opacity: 0;
-      }
-}
-.box {
-    width: 80%;
-    margin: 20px auto;
-    padding: 30px;
-    border-radius: 10px;
-}
-@media (max-width: 480px) {
-    body {
-        background-color: #ffe4e1;
-    }
-    .box {
-        background: #ffb6c1;
-        font-size: 18px;
-        padding: 20px;
-    }
-}
-@media (min-width: 1024px) {
-    body {
-        background-color: #ffe4e1;
-    }
-    .box {
-        background-color: #ffb6c1;
-        font-size: 22px;
-    }
-}
-    .envelope-button {position: relative;
-      display: inline-block;
-      width: 150px;
-      height: 100px;
-      background: #ffb6c1; /* pink body */
-      border:2px solid #d63384;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-      box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
-}
-    .envelope-button::before,
-    .envelope-button::after {
-        content: '';
-      position: absolute;
-      width: 30px;
-      height: 0;
-      border-style: solid;
-    }
-    .envelope-button::before {
-        top: -2px;
-        left: 0;
-        border-width: 0 60px 40px 60px;
-        border-color: transparent transparent #ffb6c1 transparent;
-    }
-    .envelope-button::after {
-        bottom: -2px;
-      left: 0;
-      border-width: 40px 60px 0 60px;
-      border-color: #f08080 transparent transparent transparent;
-    }
-    .envelope-text {
-        position: relative;
-      z-index: 2;
-      font-weight: bold;
-      color: rgb(170, 11, 11);
-      margin-top: 28px;
-      font-size: 18px;
-    }
-    .envelope-button:hover {
-        transform: scale(1.05);
-      background-color: #ffc0cb;
-    }
-    .envelope-button:hover::before {
-        border-bottom-color: #ffc0cb;
-    }
-    #revealed-message {
-        margin-top: 30px;
-        margin-left: 0;
-        margin-right: 0;
-        margin-bottom: 20px;
-      font-size: 20px;
-      color: #d63384;
-      display: none;
-      animation: fadeIn 0.5s ease forwards;
-    }
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-    button {
-            margin-top: 15%;
-            margin-bottom: 20%;
-            padding: 10px 40%;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(to top, #ffe5ec, #ffc8dd);
+            font-family: "Times New Roman", Times, serif;
+            text-align: center;
+            color: #5d1049;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* Envelope */
+        .envelope-wrapper {
+            position: relative;
+            cursor: pointer;
+            width: 200px;
+            height: 150px;
+            background-color: #ffb6c1;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: center;
+            z-index: 10;
+            animation: hover 3s infinite ease-in-out;
+            margin-bottom: 20px;
+        }
+
+        @keyframes hover {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .envelope-wrapper::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            z-index: 2;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-top: 80px solid #f08080;
+            transform-origin: top;
+            transition: transform 0.5s ease;
+        }
+
+        .envelope-wrapper.open::before { transform: rotateX(180deg); }
+
+        .envelope-wrapper::after {
+            content: "";
+            position: absolute;
+            z-index: 3;
+            width: 0;
+            height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 75px solid #ffc0cb;
+            bottom: 0;
+        }
+
+        .heart-sticker {
+            position: absolute;
+            top: 30px;
+            z-index: 4;
+            color: #d63384;
+            font-size: 24px;
+            transition: opacity 0.3s;
+        }
+        .open .heart-sticker { opacity: 0; }
+
+        #revealed-message {
+            margin-top: 20px;
+            max-width: 85%;
+            font-size: 1.1em;
+            color: #d63384;
+            display: none;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 20px;
+            border-radius: 15px;
+            animation: fadeIn 1s ease forwards;
+            z-index: 5;
+            line-height: 1.4;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Audio Controls Styling */
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+            z-index: 10;
+            width: 250px; /* Set a fixed width for the slider area */
+            align-items: center;
+        }
+
+        .music-btn {
+            background-color: #ffffff;
+            color: #ff69b4;
+            border: 2px solid #ff69b4;
+            padding: 10px 25px;
+            font-size: 1em;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px #ffc0cb;
+            transition: all 0.2s;
+            width: 100%;
+        }
+
+        /* Progress Bar (Slider) */
+        #seekBar {
+            width: 100%;
+            cursor: pointer;
+            accent-color: #ff69b4; /* Colors the slider handle */
+            margin-top: 5px;
+        }
+
+        .back-btn {
+            margin-top: 10px;
+            padding: 8px 30px;
             background-color: #ff69b4;
             color: white;
             border: none;
-            font-size: 1.2em;
             border-radius: 4px;
             cursor: pointer;
+            text-decoration: none;
+            font-size: 0.9em;
             box-shadow: 0 4px #c2185b;
         }
-        button:hover {
-            background-color: #ff85c1;
+
+        /* Hearts */
+        .heart {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: #ff69b4;
+            transform: rotate(-45deg);
+            animation: floatUp 6s infinite ease-in;
+            opacity: 0.7;
+            z-index: 1;
+        }
+        .heart::before, .heart::after {
+            content: "";
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: inherit;
+            border-radius: 50%;
+        }
+        .heart::before { top: -12px; left: 0; }
+        .heart::after { left: 12px; top: 0; }
+
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) rotate(-45deg) scale(0.5); opacity: 0; }
+            20% { opacity: 0.7; }
+            100% { transform: translateY(-20vh) rotate(-45deg) scale(1.1); opacity: 0; }
         }
     </style>
 </head>
 <body>
-    
-    <div class="envelope-button" onclick="revealMessage()">
-    <div class="envelope-text">Open</div>
- </div>
- <div id="revealed-message">Happy birthday, Maychel!! Wishing you a day full of love, fun and all the things that make you happy. May this year and all the subsequent years to come bring you new experiences and unforgettable memories. Sorry din kung medyo pangit yung shit, obobs ako magcode e. Salamat ulit sa paginvite. Have the happiest birthday ever!!!!</div>
 
- <a href="index.html" target="_self">
-<button>Back</button>
- </a>
+    <audio id="birthdayMusic" loop>
+        <source src="kalapastangan.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="envelope-wrapper" id="envelope" onclick="revealMessage()">
+        <div class="heart-sticker">❤️</div>
+    </div>
+
+    <div id="revealed-message">
+        Happy Valentines pre!!! Kung wala pang bumabati sa'yo, itabi mo, ako na. Lagi ka rin nagsesend ng chiikawa e kaya yun na ginawa kong GIF. Ginawa ko rin to kasi why not may luma akong code di nagamit e kaya inedit ko nalang para rito. Enjoy mo na rin muna yung kanta. WOOOOO HAPPY VALENTINES TALAGA PREEEEE!!!!
+    </div>
+
+    <div class="controls">
+        <button class="music-btn" id="musicToggle" onclick="toggleMusic()">🎵 Play Kalapastangan</button>
+        
+        <input type="range" id="seekBar" value="0" step="0.1">
+        
+        <a href="index.html" class="back-btn">Back</a>
+    </div>
+
     <script>
-        function revealMessage() {
-        const message = document.getElementById('revealed-message');
-        message.style.display = 'block';
+        const audio = document.getElementById('birthdayMusic');
+        const musicBtn = document.getElementById('musicToggle');
+        const seekBar = document.getElementById('seekBar');
+
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play();
+                musicBtn.innerText = "⏸️ Pause";
+            } else {
+                audio.pause();
+                musicBtn.innerText = "🎵 Play Kalapastangan";
+            }
         }
-    for (let i = 0; i < 20; i++) {
-        let balloon = document.createElement("div");
-      balloon.className = "balloon";
-      balloon.style.left = Math.random() * 100 + "vw";
-      balloon.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 70%)`;
-      balloon.style.animationDuration = (Math.random() * 5 + 5) + "s";
-      balloon.style.animationDelay = Math.random() * 0 + "s";
-      document.body.appendChild(balloon);
-    }
+
+        // Update the slider as the music plays
+        audio.addEventListener('timeupdate', () => {
+            const progress = (audio.currentTime / audio.duration) * 100;
+            seekBar.value = progress || 0;
+        });
+
+        // Seek the music when the slider is moved
+        seekBar.addEventListener('input', () => {
+            const seekTo = (seekBar.value / 100) * audio.duration;
+            audio.currentTime = seekTo;
+        });
+
+        function revealMessage() {
+            document.getElementById('envelope').classList.add('open');
+            setTimeout(() => {
+                document.getElementById('revealed-message').style.display = 'block';
+            }, 500);
+        }
+
+        const colors = ['#ff4d6d', '#ff758f', '#ff85a1', '#fbb1bd', '#ffb3c1'];
+        for (let i = 0; i < 25; i++) {
+            let heart = document.createElement("div");
+            heart.className = "heart";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+            heart.style.animationDelay = (Math.random() * 5) + "s";
+            heart.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            document.body.appendChild(heart);
+        }
     </script>
 </body>
 </html>
